@@ -1,76 +1,123 @@
-mport React from 'react';
-import {
-  StyleSheet, Image,
-  View,
-  Text,
- ScrollView, SafeAreaView} from 'react-native';
+import React from 'react';
+import {StyleSheet, Image,View,Text,FlatList} from 'react-native';
+import { Header } from 'react-native-elements';
+
+const DATA = [
+  
+  {
+    id: '1',img1: require('./assets/image/DigitusLogo.png'),
+    img: require('./assets/image/image.png'),
+    title: 'Enim ad minim',
+    tit:'Duis aute',
+    text:['Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    '\nsed do eiusmod tempor incididunt ut labore et dolore',
+   '\nmagna aliqua. Ut enim ad minim veniam, quis nostrud',
+   '\nexercitation ullamco laboris nisi ut aliquip ex ea',
+   '\ncommodo consequat. Duis aute irure dolor in',
+   '\nreprehenderit in voluptate velit esse cillum dolore eu',  
+   '\nfugiat nulla pariatur. Excepteur sint occaecat cupidatat',
+   '\nnon proident, sunt in culpa qui officia deserunt mollit',
+   '\nanim id est laborum.', 
+   '\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit,',
+    '\nsed do eiusmod tempor incididunt ut labore et dolore',
+    '\nmagna aliqua. Ut enim ad minim veniam, quis nostrud',
+    '\nexercitation ullamco laboris nisi ut aliquip ex ea',
+     '\ncommodo consequat. Duis aute irure dolor in',
+      '\nreprehenderit in voluptate velit esse cillum dolore eu',
+      '\nfugiat nulla pariatur. Excepteur sint occaecat cupidatat',
+       '\nnon proident, sunt in culpa qui officia deserunt mollit',
+        '\nanim id est laborum.',
+      '\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit,']
+    
+  },
+ 
+  ];
+
+
+  
+
+const Item = ({img1,img,title,tit,text}) => (
+  <View style={styles.item}> 
+  
+  <Image style={styles.digitus} source={img1}/>
+    <Image style={styles.image1} source={img}/>
+    <Text style={styles.text1}>{title}</Text>
+    <Text style={styles.t2}>{tit}</Text>
+    <Text style={styles.text}>{text}</Text>
+  </View>
+);
+
+
 
 const App = () => {
-
+  const renderItem = ({ item }) => (
+    <View>
+    <Item img1={item.img1} img={item.img} title={item.title} tit={item.tit} text={item.text} />
+    
+   </View>
+  );
   
   return (
    <View style={styles.container}>
+     
+        <Image style={styles.not} source={require('./assets/image/not.png')} ></Image>
+      
+      <Header
+      
+      leftComponent={<Image style={styles.back} source= {require('./assets/image/back.png')}></Image>}
     
-      <Image source={ require("./assets/image/Rectangle.png")} style={styles.rectangle}/>
-        <Image style={styles.back} source= {require('./assets/image/back.png')}></Image>
-      <Image style={styles.not} source={require('./assets/image/not.png')} ></Image> 
-      
-      
-       <SafeAreaView><ScrollView> 
+      containerStyle={{
+        backgroundColor: '#ffffff',
+        justifyContent: 'space-around',
+        height:80,
+       top:108,
        
-        <Image style={styles.digitus} source={require('./assets/image/DigitusLogo.png')}/>
-       
-        <Image source={require('./assets/image/image.png')} style={styles.image1} />
-     <Text style={styles.text1}>Enim ad minim </Text>
-     <Text style={styles.t2}>Duis aute</Text>
-     <Text style={styles.text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-     {'\n'}sed do eiusmod tempor incididunt ut labore et dolore
-    {'\n'}magna aliqua. Ut enim ad minim veniam, quis nostrud
-    {'\n'}exercitation ullamco laboris nisi ut aliquip ex ea
-    {'\n'}commodo consequat. Duis aute irure dolor in
-    {'\n'}reprehenderit in voluptate velit esse cillum dolore eu  
-    {'\n'}fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-    {'\n'}non proident, sunt in culpa qui officia deserunt mollit
-    {'\n'}anim id est laborum.  
-    {'\n\n'}Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-     {'\n'}sed do eiusmod tempor incididunt ut labore et dolore
-     {'\n'}magna aliqua. Ut enim ad minim veniam, quis nostrud
-     {'\n'}exercitation ullamco laboris nisi ut aliquip ex ea
-      {'\n'}commodo consequat. Duis aute irure dolor in
-       {'\n'}reprehenderit in voluptate velit esse cillum dolore eu
-       {'\n'}fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-        {'\n'}non proident, sunt in culpa qui officia deserunt mollit
-         {'\n'}anim id est laborum.
-       {'\n\n'}Lorem ipsum dolor sit amet, consectetur adipiscing elit, </Text>
-      </ScrollView></SafeAreaView>
+      }}/>
+      
+       <View style={styles.background}>
+       </View>
+       <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        pagingEnabled
+     showsVerticalScrollIndicator={false}
+      />
       </View>
   );
 }
 
 const styles = StyleSheet.create({
   background:{
+    top:150,
+    width:420,
+    height:50,
+    backgroundColor:'white',
+    left:0,
+  position:'absolute',
+ zIndex:-1,
+  },
+  ImageHeaderScrollView:{
+ marginBottom:-300,
+    backgroundColor:'black',
   
-    width:300,
-    heigth:80,
-    backgroundColor:'#c9caca',
-    
-    top:50,
+  zIndex:2,
   },
   container: {
     flex: 10,
     backgroundColor: 'black',
-   marginTop:-115,
-   marginBottom:0,
-   paddingBottom:85,
-   
+ 
+    top:-50,
+    marginBottom:10,
   },
+ 
   image1: {
     flex: 5,
     width:410,
     height: 325,
     margin:10,
     top:116,
-    marginBottom: 95,
+    marginTop:-15,
     left:-10,
     resizeMode: 'contain',
     zIndex:-1,
@@ -79,12 +126,12 @@ const styles = StyleSheet.create({
   back: {
     flex:1,
     width:25,
-    marginTop:340,
-    marginBottom:-230,
+    
+   
     height: 5,
     bottom:0,
     right:0,
-    top:-115,
+    top:0,
     paddingBottom:10,
     paddingTop:10,
     left:20,
@@ -94,22 +141,16 @@ const styles = StyleSheet.create({
   digitus: {
     width: 115,
     height: 60,
-    top:65,
+    zIndex:1,
+    resizeMode: 'cover',
+    position:'absolute',
+    top:40,
     left:140,
-    resizeMode: 'cover',
-    position:'absolute',
-    
   },
-  rectangle: {
-    width: 435,
-    height: 100,
-    bottom:720,
-    resizeMode: 'cover',
-    position:'absolute',
-    zIndex:0,
-    },
+ 
+  
   text: {
-    zIndex:-2,
+    elevation:3,
     flex: 20,
     backgroundColor: 'white',
     borderBottomWidth: 2,
@@ -126,7 +167,6 @@ const styles = StyleSheet.create({
    left:-1,
    paddingLeft:10,
    paddingRight:5,
-   
   },
   text1: {
     flex: 5,
