@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   background:{
     top:150,
     width:420,
-    height:50,
+    height:80,
     backgroundColor:'white',
     left:0,
   position:'absolute',
@@ -104,11 +104,10 @@ const styles = StyleSheet.create({
   zIndex:2,
   },
   container: {
-    flex: 10,
+    flex:1,
     backgroundColor: 'black',
- 
     top:-50,
-    marginBottom:10,
+   
   },
  
   image1: {
@@ -116,7 +115,7 @@ const styles = StyleSheet.create({
     width:410,
     height: 325,
     margin:10,
-    top:116,
+    top:80,
     marginTop:-15,
     left:-10,
     resizeMode: 'contain',
@@ -131,7 +130,7 @@ const styles = StyleSheet.create({
     height: 5,
     bottom:0,
     right:0,
-    top:0,
+    top:-50,
     paddingBottom:10,
     paddingTop:10,
     left:20,
@@ -144,7 +143,7 @@ const styles = StyleSheet.create({
     zIndex:1,
     resizeMode: 'cover',
     position:'absolute',
-    top:40,
+    top:0,
     left:140,
   },
  
